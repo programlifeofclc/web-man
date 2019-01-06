@@ -5,11 +5,11 @@ import org.apache.activemq.command.ActiveMQTextMessage;
 import org.springframework.stereotype.Component;
 import top.itjee.www.zchain.webcontroller.conf.activemq.impl.AbstractQueueMQMessageHandler;
 
-import javax.jms.JMSException;
+import java.io.UnsupportedEncodingException;
 
 
 @Component
-public class QueueConsumer extends AbstractQueueMQMessageHandler {
+public class QueueConsumerTest extends AbstractQueueMQMessageHandler {
 
     ActiveMQMessage activeMQMessage;
 
@@ -21,8 +21,8 @@ public class QueueConsumer extends AbstractQueueMQMessageHandler {
     @Override
     public boolean handlerMessage() {
         try {
-            System.out.println("主机queue获得消息：" + ((ActiveMQTextMessage)activeMQMessage).getText());
-        } catch (JMSException e) {
+            System.out.println("从机queue获得消息：" + ((ActiveMQTextMessage)activeMQMessage).getText());
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return true;

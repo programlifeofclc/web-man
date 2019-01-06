@@ -36,16 +36,17 @@ public class Producer {
 
     @Autowired
     Producer producer;
-
-    @Scheduled(fixedDelay = 5000) // 5s执行一次   只有无参的方法才能用该注解
-    public void sendMessage() {
-        System.out.println("消息发送一次");
-        producer.sendTopicMessage("baaaaaaaaa");
-    }
-
+//
+//    @Scheduled(fixedDelay = 5000) // 5s执行一次   只有无参的方法才能用该注解
+//    public void sendMessage() {
+//        System.out.println("消息发送一次");
+//        producer.sendTopicMessage("baaaaaaaaa");
+//    }
+//
+    int i = 0;
     @Scheduled(fixedDelay = 4000) // 5s执行一次   只有无参的方法才能用该注解
     public void sendMessagse() {
         System.out.println("消息发送一次");
-        producer.sendQueueMessage("bbbbbbbbbbbbbbbbbbbb");
+        producer.sendQueueMessage("我的消息目录：" + i ++ );
     }
 }
