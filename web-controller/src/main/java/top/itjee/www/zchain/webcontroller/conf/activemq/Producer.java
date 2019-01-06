@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
 import javax.jms.Destination;
 
 @Component
@@ -34,8 +35,8 @@ public class Producer {
         sendTopicMessage(activeMQTopic, message);
     }
 
-    @Autowired
-    Producer producer;
+//    @Autowired
+//    Producer producer;
 //
 //    @Scheduled(fixedDelay = 5000) // 5s执行一次   只有无参的方法才能用该注解
 //    public void sendMessage() {
@@ -43,10 +44,10 @@ public class Producer {
 //        producer.sendTopicMessage("baaaaaaaaa");
 //    }
 //
-    int i = 0;
-    @Scheduled(fixedDelay = 4000) // 5s执行一次   只有无参的方法才能用该注解
-    public void sendMessagse() {
-        System.out.println("消息发送一次");
-        producer.sendQueueMessage("我的消息目录：" + i ++ );
-    }
+//    int i = 0;
+//    @Scheduled(fixedDelay = 4000) // 5s执行一次   只有无参的方法才能用该注解
+//    public void sendMessagse() {
+//        System.out.println("消息发送一次");
+//        producer.sendQueueMessage("我的消息目录：" + i ++ );
+//    }
 }
