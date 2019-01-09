@@ -18,7 +18,7 @@ public class MqConfig {
     public JmsListenerContainerFactory<?> topicListenerFactory(ConnectionFactory connectionFactory) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setPubSubDomain(true);
-        factory.setSessionAcknowledgeMode(4);
+        factory.setSessionAcknowledgeMode(2);//设置为2 否则消息失败不会重发
         factory.setConnectionFactory(connectionFactory);
         return factory;
     }
@@ -27,7 +27,7 @@ public class MqConfig {
     public JmsListenerContainerFactory<?> queueListenerFactory(ConnectionFactory connectionFactory) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setPubSubDomain(false);
-        factory.setSessionAcknowledgeMode(4);//设置为2 会出现自动确认 所以设置为4
+        factory.setSessionAcknowledgeMode(2);//设置为2 否则消息失败不会重发
         factory.setConnectionFactory(connectionFactory);
         return factory;
     }

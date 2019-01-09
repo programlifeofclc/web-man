@@ -16,6 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
 @SpringBootApplication(scanBasePackages = {"top.itjee.www.zchain"}) //springboot基础包扫描
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 1800)
+//@ImportResource("classpath:xx.xml")
 public class WebControllerApplication {
 
     public static void main(String[] args) {

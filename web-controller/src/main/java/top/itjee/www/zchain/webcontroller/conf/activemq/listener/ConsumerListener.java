@@ -17,7 +17,7 @@ public abstract class ConsumerListener {
 
     public ExecutorService pool = Executors.newFixedThreadPool(5);
 
-    public void notifyListener(ActiveMQTextMessage text) {
+    public void notifyListener(ActiveMQTextMessage text) throws Exception {
         boolean b = true;
         List<Future<Boolean>> futures = new ArrayList<>();
         for (MQMessageHandler call : list) {
@@ -34,11 +34,9 @@ public abstract class ConsumerListener {
             }
         }
         if (b) {
-            try {
-                text.acknowledge();
-            } catch (JMSException e) {
-                e.printStackTrace();
-            }
+            text.acknowledge();
+        } else {
+            throw new Exception("消息：" + text.getText() + "报错了");
         }
     }
 

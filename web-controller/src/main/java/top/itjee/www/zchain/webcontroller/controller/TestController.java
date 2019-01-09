@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisSentinelPool;
 import top.itjee.www.zchain.service.user.UserService;
+import top.itjee.www.zchain.webcontroller.conf.activemq.Producer;
 import top.itjee.www.zchain.webcontroller.info.AppInfo;
 import top.itjee.www.zchain.webcontroller.vo.User;
 
@@ -36,6 +37,9 @@ public class TestController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    Producer producer;
 
     @InitBinder
     protected void initBinder(WebDataBinder webDataBinder) {
@@ -57,6 +61,9 @@ public class TestController {
             s.setAttribute("myid","adsfaffff");
         else
             System.out.println(s.getAttribute("myid"));
+
+        producer.sendQueueMessage("天下多少事");
+        //producer.sendTopicMessage("都付笑谈中");
 
         Jedis jedis = jedisSentinelPool.getResource();
         String sf = jedis.get("w" + Math.random() * 10);

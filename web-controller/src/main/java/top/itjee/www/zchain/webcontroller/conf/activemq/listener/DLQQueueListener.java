@@ -2,16 +2,15 @@ package top.itjee.www.zchain.webcontroller.conf.activemq.listener;
 
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConsumerQueueListener extends ConsumerListener {
+public class DLQQueueListener extends ConsumerListener {
 
-    @JmsListener(destination = "defaultQueue", containerFactory = "queueConnectionFactory", selector = "")
+    //死信队列默认名字ActiveMQ.DLQ 可通过配置修改
+    @JmsListener(destination = "ActiveMQ.DLQ", containerFactory = "queueConnectionFactory", selector = "")
     public void receiveQueue(ActiveMQTextMessage text) throws Exception {
-        notifyListener(text);
+        System.out.println("死信息：" + text.getText());
     }
 
 }

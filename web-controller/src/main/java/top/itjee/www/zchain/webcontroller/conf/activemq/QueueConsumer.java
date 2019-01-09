@@ -25,6 +25,6 @@ public class QueueConsumer extends AbstractQueueMQMessageHandler {
         } catch (JMSException e) {
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
 }

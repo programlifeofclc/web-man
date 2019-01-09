@@ -3,10 +3,7 @@ package top.itjee.www.zchain.webcontroller.conf;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.DateFormatter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import top.itjee.www.zchain.webcontroller.interceptor.DestroyInterceptor;
 
 //mvc的配置
@@ -23,6 +20,14 @@ public class WebConfigurer implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SessionHandlerInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new DestroyInterceptor()).addPathPatterns("/**");
+        WebMvcConfigurer.super.addInterceptors(registry);
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        //全部静态资源,如果指定全部资源则全局异常捕获无法传递到自定义的error.html页面
+        //registry.addResourceHandler("/webapp/**").addResourceLocations("classpath:/webapp/");
+        //registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
     }
 
     @Override

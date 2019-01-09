@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConsumerTopicListener extends ConsumerListener {
 
-    @JmsListener(destination = "defaultTopic", containerFactory = "topicConnectionFactory")
-    public void receiveTopic(ActiveMQTextMessage text) {
+    @JmsListener(destination = "defaultTopic", containerFactory = "topicConnectionFactory",selector = "")
+    public void receiveTopic(ActiveMQTextMessage text) throws Exception {
         notifyListener(text);
     }
 
